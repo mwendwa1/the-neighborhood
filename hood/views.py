@@ -1,11 +1,13 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from hood.forms import BusinessForm, NeighborhoodForm, PostForm, SignUpForm, UpdateProfileForm
 from django.contrib.auth import authenticate,login
+from django.contrib.auth.decorators import login_required
 from hood.models import Business, Neighborhood, Post, Profile
 from django.contrib.auth.models import User
 
 
 # Create your views here.
+@login_required(login_url = 'login')
 def index(request):
     return render(request, 'index.html')
 

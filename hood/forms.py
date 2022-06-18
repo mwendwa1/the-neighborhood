@@ -15,6 +15,7 @@ class SignUpForm(UserCreationForm):
 class NeighborhoodForm(forms.ModelForm):
     class Meta:
         model = Neighborhood
+        fields = ('name', 'location', 'description', 'health_phone', 'police_phone')
 
 
 class BusinessForm(forms.ModelForm):
