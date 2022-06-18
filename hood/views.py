@@ -14,4 +14,5 @@ def hoods(request):
     all_hoods = all_hoods[::-1]
     context = {'all_hoods':all_hoods}
     return render(request, context, 'all_hoods.html')
-    
+
+
