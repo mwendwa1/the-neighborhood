@@ -6,14 +6,14 @@ from django.db.models.signals import post_save
 
 # Create your models here.
 class Neighborhood(models.Model):
-    neighborhood_name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     health_phone = models.IntegerField(null=True, blank=True)
     police_phone = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
-        return f'{self.neighborhood_name} hood'
+        return f'{self.name} hood'
 
     def create_neighborhood(self):
         self.save()
@@ -50,12 +50,12 @@ class Profile(models.Model):
 
 class Business(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='owner')
-    business_name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     business_email = models.CharField(max_length=60)
     neighborhood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE, related_name='business')
 
     def __str__(self):
-        return f'{self.business_name} Business'
+        return f'{self.name} Business'
 
     def create_business(self):
         self.save()
@@ -64,8 +64,8 @@ class Business(models.Model):
         self.delete()
 
     @classmethod
-    def search_business(cls, business_name):
-        return cls.objects.filter(business_name__icontains=business_name).all()
+    def search_business(cls, name):
+        return cls.objects.filter(name__icontains=name).all()
 
 
 class Post(models.Model):
