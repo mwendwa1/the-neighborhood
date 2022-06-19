@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container bg-light" style="margin-top: 5%;">
+    <div class="row">
+        <div class="row no-gutters">
+            <div class="col-md-4" style="min-height: 340px;">
+                <div class="card mb-3">
+                    <h5 class="card-header">
+                        <span style="font-weight: bold; text-transform: uppercase;">{{hood.name}}</span>
+                        <span style="text-transform: uppercase; font-size: 10px; color:blue; float: right;">{{hood.location}}</span>
+                    </h5>
+                    <h6 class="card-text" style="display: flex; justify-content: space-evenly;">
+                        <span class="text-secondary">{{hood.members.count}} Member {{hood.members.count | pluralize}}</span>
+                        <span>{{hood.business.count}} Businesse{{hood.business.count | pluralize}}</span>
+                        <span>{{hood.hood_post.count }} Post{{hood.hood_post.count | pluralize}}</span>
+                    </h6>
+                    <img class="card-img" src="{{hood.photo.url}}" alt="">
+                    <p class="card-text ml-4">Description: {{hood.description}}</p>
+                    <p class="card-text ml-4">Health Tel:: {{hood.health_phone}}</p>
+                    <p class="card-text ml-4">Police Tel: {{hood.police_phone}}</p>
+                </div>  
+            </div>
+        </div>
+    </div>
+    <div class="container hoode">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="" data-toggle="modal" data-target="#ModalCenter" class="btn btn-sm btn-outline-primary mb-4 mr-4">Add Business</a>
+                <a href="{% url 'post' hood.id%}" class="btn btn-sm btn-outline-primary mb-4">New Post</a>
+                <a href="{% url 'members' hood.id %}" class="btn btn-sm btn-outline-primary mb-4 ml-4">Members</a>
+                <form action="{% url 'search' %}" method="get" class="form-inline">
+                    {% csrf_token %}
+                    <div class="md-form my-0">
+                        <input type="text" class="form-control mr-sm-2" placeholder="Search Businesses" name="title" aria-label="Search">
+                    </div>
+                </form>
+                <h5 class="D-block mx-auto text-center tt">Businesses</h5>
+                <hr>
+                <div class="row">
+                    {% for bus in businesss %}
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">{{bus.name}}</h5>
+                                <p class="card-text">{{bus.email}}</p>
+                                <p class="card-text">{{bus.description}}</p>
+                                <p class="card-text">
+                                    Owner : <small class="text-muted">{{bus.user.user.username | title }}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <h5 class="D-block mx-auto text-center tt">Posts</h5>
+                <div class="row">
+                    {% for post in posts %}
+                    <div class="col-md-4">
+                        <div class="card md-4 hpost">
+                            <div class="card-body">
+                                <h5 class="card-title">{{post.title}}</h5>
+                                <p class="card-text">{{post.post}}</p>
+                                <p class="card-text">By: 
+                                    <small class="text-muted">{{post.user.user.username | title}}</small>
+                                    <small style="float: right;">{{post.date | date}}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <hr>
+                <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">New Business</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                    {{form | crispy }}
+                                    <button type="submit" class="btn btn-sm btn-success">Save Business</button>
+                                    <button class="btn btn-sm btn-outline-danger" data-dismiss="modal">Close</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

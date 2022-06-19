@@ -6,9 +6,7 @@
         <div class="header_toggle"> 
             <i class='bx bx-menu' id="header-toggle"></i> 
         </div>
-        <form action="" method="get">
-            <input type="text" class="form-control" placeholder="Search">
-        </form>
+        
         {% if user.is_authenticated %}
         <div class="header_img"> 
             <img src="{{user.profile.profile_picture.url}}" alt="dp">
