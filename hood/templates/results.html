@@ -14,10 +14,18 @@
                 <div class="card-body">
                     <h5 class="card-title">{{bus.name}}</h5>
                     <p class="card-text">{{bus.description}}</p>
+                    <p class="card-text">
+                        Owner: <small class="text-muted">{{bus.user.user.username | title }}</small>
+                    </p>
+                    <p class="card-text">Email <small>{{bus.email}}</small></p>
                 </div>
             </div>
+            {% endfor %}
         </div>
+        {% else %}
+        <h4>Found 0 Business </h4>
     </div>
+    {% endif %}
 </div>
 
 {% endblock %}

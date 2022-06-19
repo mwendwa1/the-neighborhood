@@ -11,7 +11,6 @@
         </form>
         {% if user.is_authenticated %}
         <div class="header_img"> 
-            
             <img src="{{user.profile.profile_picture.url}}" alt="dp">
             
         </div>
@@ -19,23 +18,31 @@
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div> 
-                <a href="#" class="nav_logo">
-                    <i class='bx bxs-spa nav_icon' style="color: white;"></i>
-                    <span class="nav_logo-name">NEIGHBORHOOD</span>
-                </a>
+                
                 <div class="nav_list">
                     <a href="/" class="nav_link active">
                         <i class='bx bx-home-alt-2 nav_logo-icon'></i>
                        <span class="nav_name">HOME</span>
                     </a>
-                    <a href="#" class="nav_link">
+                    <a href="{% url 'profile' user.username %}" class="nav_link">
                         <i class='bx bx-user nav_icon'></i>
                         <span class="nav_name">PROFILE</span>
                     </a>
-                    <a href="#" class="nav_link">
-                        <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
-                        <span class="nav_name">BUSINESSES</span>
+                    <a href="{% url  'edit-profile' user.username %}" class="nav_link">
+                        <i class='bx bxs-edit'></i>
+                        <span class="nav_name">EDIT PROFILE</span>
                     </a>
+                    {% if user.profile.neighborhood %}
+                    <a href="{% url 'single-hood' user.profile.neighborhood.id %}" class="nav_link">
+                        <i class='bx bx-paper-plane' ></i>
+                        <span class="nav_name">NEIGHBORHOODS</span>
+                    </a>
+                    {% else %}
+                    <a href="" class="nav_link">
+                        <i class='bx bx-paper-plane' ></i>
+                        <span class="nav_name">NO NEIGHBORHOODS YET</span>
+                    </a>
+                    {% endif %}
                 </div>
             </div>
             <a href="{% url 'login' %}" class="nav_link">

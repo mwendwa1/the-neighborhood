@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load scrispy_forms_tags %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <div class="container">
@@ -9,12 +9,12 @@
         {% for hood in all_hoods %}
         <div class="col-md-4" style="min-height: 340px;">
             <div class="card mb-4">
-                <h5 class="card-title">
-                    {{ hood.name}} 
-                    {{hood.location}}
+                <h5 class="card-title text-center">
+                    {{ hood.name}} <br>
+                    {{hood.location}} <br>
                     <span class="ml-4">{{hood.members.count}} member {{hood.members.count | pluralize}}</span>
                 </h5>
-                <p class="card-text">{{hood.description}}</p>
+                <p class="card-text text-center">{{hood.description}}</p>
                 {% if request.user.profile.neighborhood == hood %}
                 <a href="{% url 'leave-hood' hood.id %}" class="btn btn-outline-danger btn-sm">Leave Neighborhood</a>
                 {% elif not request.user.profile.neighborhood %}

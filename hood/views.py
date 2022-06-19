@@ -30,7 +30,7 @@ def hoods(request):
     all_hoods = Neighborhood.objects.all()
     all_hoods = all_hoods[::-1]
     context = {'all_hoods':all_hoods}
-    return render(request, context, 'all_hoods.html')
+    return render(request,'all_hoods.html', context)
 
 def create_hood(request):
     if request.method == 'POST':
