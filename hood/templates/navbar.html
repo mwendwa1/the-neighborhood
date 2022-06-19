@@ -16,7 +16,6 @@
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div> 
-                
                 <div class="nav_list">
                     <a href="/" class="nav_link active">
                         <i class='bx bx-home-alt-2 nav_logo-icon'></i>
@@ -43,15 +42,11 @@
                     {% endif %}
                 </div>
             </div>
-            <a href="{% url 'login' %}" class="nav_link">
+            <a href="{% url 'logout' %}" class="nav_link">
                 <i class='bx bx-log-out nav_icon'></i>
                 <span class="nav_name">LOG OUT</span>
             </a>
-            {% else %}
-            <a href="{% url 'signup' %}" class="nav_link">
-                <i class='bx bx-log-in nav_icon'></i>
-                <span class="nav_name">SIGN UP</span>
-            </a>
+            
             {% endif %}
         </nav>
     </div>
