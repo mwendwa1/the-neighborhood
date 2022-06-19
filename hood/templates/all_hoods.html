@@ -9,12 +9,15 @@
         {% for hood in all_hoods %}
         <div class="col-md-4" style="min-height: 340px;">
             <div class="card mb-4">
-                <h5 class="card-title text-center">
-                    {{ hood.name}} <br>
-                    {{hood.location}} <br>
-                    <span class="ml-4">{{hood.members.count}} member {{hood.members.count | pluralize}}</span>
+                <h5 class="card-header" style="display: flex; justify-content: space-evenly;">
+                    <span style="font-weight: bold; text-transform: uppercase;">{{ hood.name}}</span>
+                    <span style="display: inline-block;"><small style="text-transform: uppercase; font-size: 10px; color:blue;">{{hood.location}}</small></span> 
+                    <span class="text-secondary ml-4">{{hood.members.count}} member {{hood.members.count | pluralize}}</span>
                 </h5>
-                <p class="card-text text-center">{{hood.description}}</p>
+                <img class="" src="{{hood.photo.url}}" alt="">
+                <p class="card-text ml-4">Description: {{hood.description}}</p>
+                <p class="card-text ml-4">Health Tel:: {{hood.health_phone}}</p>
+                <p class="card-text ml-4">Police Tel: {{hood.police_phone}}</p>
                 {% if request.user.profile.neighborhood == hood %}
                 <a href="{% url 'leave-hood' hood.id %}" class="btn btn-outline-danger btn-sm">Leave Neighborhood</a>
                 {% elif not request.user.profile.neighborhood %}

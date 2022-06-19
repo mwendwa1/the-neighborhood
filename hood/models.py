@@ -8,6 +8,7 @@ from django.db.models.signals import post_save
 class Neighborhood(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
+    photo = models.ImageField(upload_to='photos/', blank=True)
     description = models.TextField(null=True, blank=True)
     health_phone = models.IntegerField(null=True, blank=True)
     police_phone = models.IntegerField(null=True, blank=True)
