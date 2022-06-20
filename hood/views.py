@@ -85,6 +85,21 @@ def create_post(request, hood_id):
         form = PostForm()
     return render(request, 'post.html', {'form':form})
 
+def create_business(request, hood_id):
+    business = Business.objects.get(id=hood_id)
+    if request.method == 'POST':
+        form = BusinessForm(request.POST)
+        if form.is_valid():
+            bus = form.save(commit=False)
+            bus.business = business
+            # bus.user = request.user.profile
+            # bus.save()
+            return redirect('single-hood', business.id)
+    else:
+        form = BusinessForm()
+    return render(request, 'bus.html', {'form':form})
+
+
 def join_hood(request, id):
     neighborhood = get_object_or_404(Neighborhood, id=id)
     request.user.profile.neighborhood = neighborhood

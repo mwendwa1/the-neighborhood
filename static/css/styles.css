@@ -148,3 +148,6 @@ a{
         padding-left: calc(var(--nav-width) + 188px)
     }
 }
+small#hint_id_password1,#hint_id_password2,#hint_id_username,#hint_id_email{
+    display: none;
+}

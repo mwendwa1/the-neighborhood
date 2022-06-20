@@ -7,6 +7,7 @@
 <div class="container bg-light" style="margin-top: 5%;">
     <div class="row">
         <div class="row no-gutters">
+            
             <div class="col-md-4" style="min-height: 340px;">
                 <div class="card mb-3">
                     <h5 class="card-header">
@@ -29,7 +30,7 @@
     <div class="container hoode">
         <div class="row">
             <div class="col-md-12">
-                <a href="" data-toggle="modal" data-target="#ModalCenter" class="btn btn-sm btn-outline-primary mb-4 mr-4">Add Business</a>
+                <a href="{% url 'new-bus' hood.id%}" data-toggle="modal" data-target="#ModalCenter" class="btn btn-sm btn-outline-primary mb-4 mr-4">Add Business</a>
                 <a href="{% url 'post' hood.id%}" class="btn btn-sm btn-outline-primary mb-4">New Post</a>
                 <a href="{% url 'members' hood.id %}" class="btn btn-sm btn-outline-primary mb-4 ml-4">Members</a>
                 <form action="{% url 'search' %}" method="get" class="form-inline">
@@ -41,12 +42,12 @@
                 <h5 class="D-block mx-auto text-center tt">Businesses</h5>
                 <hr>
                 <div class="row">
-                    {% for bus in businesss %}
+                    {% for bus in business %}
                     <div class="col-md-4">
                         <div class="card mb-4">
                             <div class="card-body">
                                 <h5 class="card-title">{{bus.name}}</h5>
-                                <p class="card-text">{{bus.email}}</p>
+                                <p class="card-text">{{bus.business_email}}</p>
                                 <p class="card-text">{{bus.description}}</p>
                                 <p class="card-text">
                                     Owner : <small class="text-muted">{{bus.user.user.username | title }}</small>
@@ -56,6 +57,7 @@
                     </div>
                     {% endfor %}
                 </div>
+                <hr>
                 <h5 class="D-block mx-auto text-center tt">Posts</h5>
                 <div class="row">
                     {% for post in posts %}
