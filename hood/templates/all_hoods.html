@@ -12,7 +12,7 @@
                 <h5 class="card-header" style="display: flex; justify-content: space-evenly;">
                     <span style="font-weight: bold; text-transform: uppercase;">{{ hood.name}}</span>
                     <span style="display: inline-block;"><small style="text-transform: uppercase; font-size: 10px; color:blue;">{{hood.location}}</small></span> 
-                    <span class="text-secondary ml-4">{{hood.members.count}} member {{hood.members.count | pluralize}}</span>
+                    <span class="text-secondary ml-4">{{hood.members.count}} member{{hood.members.count | pluralize}}</span>
                 </h5>
                 <img class="" src="{{hood.photo.url}}" alt="">
                 <p class="card-text ml-4">Description: {{hood.description}}</p>
@@ -20,7 +20,7 @@
                 <p class="card-text ml-4">Police Tel: {{hood.police_phone}}</p>
                 {% if request.user.profile.neighborhood == hood %}
                 <a href="{% url 'leave-hood' hood.id %}" class="btn btn-outline-danger btn-sm">Leave Neighborhood</a>
-                {% elif not request.user.profile.neighborhood %}
+                {% else %}
                 <a href="{% url 'join-hood' hood.id %}" class="btn btn-primary btn-sm">Join Neighborhood</a>
                 {% endif %}
             </div>
