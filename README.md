@@ -59,7 +59,7 @@ python3 manage.py runserver
 Pull Requests are welcomed
 
 ### Contact information 
-Reach me through email [karanim594@gmail.com]
+Reach me through email [mwendwapk8@gmail.com]
 
 ### License
 [MIT license](https://github.com/Morces/the-neighborhood/blob/master/LICENSE)
